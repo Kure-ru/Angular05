@@ -1,0 +1,79 @@
+<form #myForm="ngForm" (ngSubmit)="onSubmit()">
+  <fieldset>
+    <label for="firstname">Firstname</label>
+    <input
+      id="firstname"
+      name="firstname"
+      type="text"
+      [(ngModel)]="model.firstname"
+      #firstname="ngModel"
+      required
+      minlength="3"
+      maxlength="15"
+    />
+  </fieldset>
+
+  <!-- Message d'erreurs de firstname -->
+  <div *ngIf="firstname.errors && submitted">
+    <span *ngIf="firstname.errors?.['required']">Le nom est requis</span>
+    <span *ngIf="firstname.errors?.['minlength']"
+      >La longueur minimale doit être supérieure à 3</span
+    >
+    <span *ngIf="firstname.errors?.['maxlength']"
+      >La longueur maximale doit être inférieure à 15</span
+    >
+  </div>
+
+  <fieldset>
+    <label for="lastname">Lastname</label>
+    <input
+      id="lastname"
+      name="lastname"
+      [(ngModel)]="model.lastname"
+      #lastname="ngModel"
+      type="text"
+      required
+      minlength="3"
+      maxlength="15"
+    />
+  </fieldset>
+
+  <!-- Message d'erreurs de lastname -->
+  <div *ngIf="lastname.errors && submitted">
+    <span *ngIf="lastname.errors?.['required']">Le nom est requis</span>
+    <span *ngIf="lastname.errors?.['minlength']"
+      >La longueur minimale doit être supérieure à 3</span
+    >
+    <span *ngIf="lastname.errors?.['maxlength']"
+      >La longueur maximale doit être inférieure à 15</span
+    >
+  </div>
+
+  <fieldset>
+    <label for="email">Email</label>
+    <input
+      id="email"
+      name="email"
+      type="email"
+      [(ngModel)]="model.email"
+      #email="ngModel"
+      required
+    />
+  </fieldset>
+
+  <!-- Message d'erreurs d'email -->
+  <div *ngIf="email.errors && submitted">
+    <span *ngIf="email.errors?.['required']">Le champ email est requis</span>
+    <span *ngIf="email.errors?.['email']"
+      >Le format de l'email est invalide</span
+    >
+    <span *ngIf="email.errors?.['minlength']"
+      >L'email doit comporter au moins 3 caractères.</span
+    >
+    <span *ngIf="email.errors?.['maxlength']"
+      >L'email ne doit pas dépasser 15 caractères.</span
+    >
+  </div>
+
+  <button type="submit">Sauvegarder</button>
+</form>
